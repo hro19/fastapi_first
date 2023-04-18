@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+import json
 
 app = FastAPI()
 
@@ -16,3 +17,11 @@ def read_item(item_id: int, q: str = None):
 async def get(country:str):
 
     return {"message": country}
+
+temp = open('./sample.json','r')
+sample_data = json.load(temp)
+
+@app.get("/messages")
+async def get_messages():
+
+    return sample_data
